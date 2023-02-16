@@ -1,6 +1,6 @@
 doctrine:
     dbal:
-        default_connection : mdl
+        default_connection : mdlmaison
         connections :
             mdl:
                 driver: 'oci8'
@@ -13,6 +13,18 @@ doctrine:
                 host: '%env(DATABASE_HOST)%'
                 user: '%env(DATABASE_USER)%'
                 password: '%env(DATABASE_PWD)%'
+
+            mdlmaison:
+                driver: 'pdo_mysql'
+                server_version: 8
+                charset: utf8mb4
+                default_table_options:
+                    charset: utf8mb4
+                    collate: utf8mb4_0900_ai_ci
+                dbname: '%env(DATABASE_NAME)%'
+                host: '%env(DATABASE_MAISON_HOST)%'
+                user: '%env(DATABASE_USER)%'
+                password: '%env(DATABASE_PWD)%'    
     orm:
         auto_generate_proxy_classes: true
         naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
