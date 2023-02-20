@@ -11,20 +11,22 @@ doctrine:
                     collate: utf8mb4_unicode_ci
                 dbname: '%env(DATABASE_NAME)%'
                 host: '%env(DATABASE_HOST)%'
+                port: '%env(DATABASE_PORT)%'
                 user: '%env(DATABASE_USER)%'
                 password: '%env(DATABASE_PWD)%'
 
             mdlmaison:
-                driver: 'pdo_mysql'
-                server_version: 8
+                driver: 'oci8'
+                server_version: ~
                 charset: utf8mb4
                 default_table_options:
                     charset: utf8mb4
-                    collate: utf8mb4_0900_ai_ci
-                dbname: '%env(DATABASE_NAME)%'
-                host: '%env(DATABASE_MAISON_HOST)%'
-                user: '%env(DATABASE_USER)%'
-                password: '%env(DATABASE_PWD)%'    
+                    collate: utf8mb4_unicode_ci
+                dbname: '%env(resolve:DB_NAME)%'
+                host: '%env(resolve:DB_HOST)%'
+                port: '%env(resolve:DB_PORT)%'
+                user: '%env(resolve:DB_USER)%'
+                password: '%env(resolve:DB_PASSWORD)%'      
     orm:
         auto_generate_proxy_classes: true
         naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
