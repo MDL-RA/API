@@ -6,24 +6,23 @@ use ApiPlatform\Metadata\ApiResource;
 use App\Repository\LicencieRepository;
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints\Date;
 
-
-#[ORM\Table(name: "LICENCIE")]
 #[ORM\Entity(repositoryClass: LicencieRepository::class)]
+#[ORM\Table(name: "LICENCIE")]
+#[ORM\UniqueConstraint(name: "uq_club", columns: ["NUMLICENCE"])]
 #[ApiResource]
-
 class Licencie
 {
 
-    #[ORM\Column(name: "NUMLICENCE", type: "integer", nullable: false)]
+    #[ORM\Column(name: "ID", type: "integer", nullable: false)]
     #[ORM\Id]
     #[ORM\GeneratedValue(strategy: "SEQUENCE")]
     #[ORM\SequenceGenerator(sequenceName: "LICENCIE_ID_seq", allocationSize: 1, initialValue: 1)]
-    private int $id; 
+    private int $id;
 
  
     #[ORM\Column(name: "NUMLICENCE", type: "integer", nullable: false)]
-    #[ORM\UniqueConstraint(name: "uq_club", columns: ["NUMLICENCE"])]
     private int $numlicence;
 
 
@@ -57,14 +56,12 @@ class Licencie
     #[ORM\Column(name: "MAIL", type: "string", length:100 , nullable: false)]
     private string $mail;
 
-    #[ORM\Column(name: "DATEADHESION", type: "date", nullable: false)]
+    #[ORM\Column(name: "DATEADHESION", type: "datetime", nullable: false)]
     private DateTime $dateadhesion;
-
 
     #[ORM\Column(name: "IDCLUB", type: "integer", nullable: false)]
     private int $idclub;
 
-    
     #[ORM\Column(name: "IDQUALITE", type: "integer", nullable: false)]
     private int $idqualite;
 
@@ -188,7 +185,7 @@ class Licencie
 
     public function setDateadhesion(\DateTimeInterface $dateadhesion): self
     {
-        $this->dateadhesion = $dateadhesion;
+        $this->dateadhesion = DateTime::createFromFormat('d/m/Y',$dateadhesion);
 
         return $this;
     }

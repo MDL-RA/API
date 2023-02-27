@@ -6,24 +6,15 @@ use ApiPlatform\Metadata\ApiResource;
 use App\Repository\ClubRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-
-/**
- * Club
- *
- * @ORM\Table(name="CLUB")
- * @ORM\Entity
- */
-
- #[ORM\Table(name: "CLUB")]
- #[ORM\Entity(repositoryClass: ClubRepository::class)]
- #[ApiResource]
+#[ORM\Entity(repositoryClass: ClubRepository::class)]
+#[ORM\Table(name: "CLUB")]
+#[ApiResource]
 class Club
 {
-
-    #[ORM\Column(name: "ID", type: "integer", nullable: false)]
     #[ORM\Id]
     #[ORM\GeneratedValue(strategy: "SEQUENCE")]
     #[ORM\SequenceGenerator(sequenceName: "CLUB_ID_seq", allocationSize: 1, initialValue: 1)]
+    #[ORM\Column(name: "ID", type: "integer", nullable: false)]
     private int $id;
 
     #[ORM\Column(name: "NOM", type: "string", length: 50, nullable: false)]
@@ -34,7 +25,7 @@ class Club
     private string $adresse1;
 
 
-     #[ORM\Column(name: "ADRESSE1", type: "string", length: 60, nullable: true)]
+     #[ORM\Column(name: "ADRESSE2", type: "string", length: 60, nullable: true)]
      private ?string $adresse2;
 
 

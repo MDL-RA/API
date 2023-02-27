@@ -6,8 +6,8 @@ use ApiPlatform\Metadata\ApiResource;
 use App\Repository\QualiteRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Table(name: "QUALITE")]
 #[ORM\Entity(repositoryClass: QualiteRepository::class)]
+#[ORM\Table(name: "QUALITE")]
 #[ApiResource]
 class Qualite
 {
