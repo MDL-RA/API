@@ -1,4 +1,6 @@
 api_platform:
+    title: 'API MDL'
+    description: 'API MDL'
     mapping:
         paths: ['%kernel.project_dir%/src/Entity']
     patch_formats:
