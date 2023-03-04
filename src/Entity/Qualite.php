@@ -3,12 +3,22 @@
 namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\GetCollection;
+use App\Controller\QualiteController;
 use App\Repository\QualiteRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: QualiteRepository::class)]
 #[ORM\Table(name: "QUALITE")]
-#[ApiResource]
+#[ApiResource(
+    operations: [
+        new GetCollection(
+            uriTemplate: '/qualite/alljwt',
+            controller: QualiteController::class,
+            name: 'getAllJWT'
+        )
+    ],
+)]
 class Qualite
 {
      #[ORM\Column(name:"ID", type:"integer", nullable:false)]
