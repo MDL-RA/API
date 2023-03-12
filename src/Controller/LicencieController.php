@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Licencie;
 use App\Repository\LicencieRepository;
 use App\Service\ConversionService;
 use Firebase\JWT\JWT;
@@ -15,14 +16,12 @@ class LicencieController extends AbstractController
     public function __construct(private LicencieRepository $licencieRepository, private ConversionService $convertionService){}
 
     /**
-     * @throws ExceptionInterface
+     * @return array
+     *@throws ExceptionInterface
      */
-    public function __invoke($numLicencie): string
+    public function __invoke($data): array
     {
-        $arr =  $this->licencieRepository->findByNumLicencie($numLicencie);
-        $arrConverted = $this->convertionService->conversion($arr);
-        dd($arr);
-        $key = getenv('JWT_SECRET_KEY');
-        return JWT::encode($arrConverted, strval($key), 'HS256');
+        $arrConverted = json_encode($this->convertionService->SingleConversion($data));
+        return $this->convertionService->Encrypt($arrConverted);
     }
 }
