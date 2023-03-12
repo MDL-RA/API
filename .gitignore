@@ -8,4 +8,5 @@
 /vendor/
 .DS_STORE
 /.idea
+/config/keys
 ###< symfony/framework-bundle ###
