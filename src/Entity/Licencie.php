@@ -6,7 +6,8 @@ use ApiPlatform\Metadata\ApiProperty;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
-use App\Controller\LicencieController;
+use App\Controller\Licencie\AllLicencie;
+use App\Controller\Licencie\LicencieById;
 use App\Repository\LicencieRepository;
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
@@ -19,11 +20,15 @@ use Doctrine\ORM\Mapping as ORM;
     operations: [
         new Get(
             uriTemplate: '/licencies/{numlicence}',
-            controller: LicencieController::class,
+            controller: LicencieById::class,
             description: 'numéro du licencie',
             name: 'licencie',
         ),
-        new GetCollection()
+        new GetCollection(
+            controller:AllLicencie::class,
+            description: 'récupérer tout les licencies',
+            name:'allLicencie'
+        )
     ]
 )]
 class Licencie
