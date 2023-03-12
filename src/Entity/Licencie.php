@@ -2,16 +2,30 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiProperty;
 use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
+use App\Controller\LicencieController;
 use App\Repository\LicencieRepository;
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints\Date;
+
 
 #[ORM\Entity(repositoryClass: LicencieRepository::class)]
 #[ORM\Table(name: "LICENCIE")]
 #[ORM\UniqueConstraint(name: "uq_club", columns: ["NUMLICENCE"])]
-#[ApiResource]
+#[ApiResource(
+    operations: [
+        new Get(
+            uriTemplate: '/licencies/{numlicence}',
+            controller: LicencieController::class,
+            description: 'numéro du licencie',
+            name: 'licencie',
+        ),
+        new GetCollection()
+    ]
+)]
 class Licencie
 {
 
@@ -19,10 +33,12 @@ class Licencie
     #[ORM\Id]
     #[ORM\GeneratedValue(strategy: "SEQUENCE")]
     #[ORM\SequenceGenerator(sequenceName: "LICENCIE_ID_seq", allocationSize: 1, initialValue: 1)]
+    #[ApiProperty(identifier: false)]
     private int $id;
 
  
     #[ORM\Column(name: "NUMLICENCE", type: "integer", nullable: false)]
+    #[ApiProperty(identifier: true)]
     private int $numlicence;
 
 
