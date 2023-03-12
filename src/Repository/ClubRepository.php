@@ -5,6 +5,8 @@ namespace App\Repository;
 use App\Entity\Club;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\Validator\Constraints\Json;
+use Firebase\JWT\JWT;
 
 /**
  * @extends ServiceEntityRepository<Club>
@@ -37,6 +39,14 @@ class ClubRepository extends ServiceEntityRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+    public function findAllEncoded() : string
+    {
+        $key = gotenv('JWT_SECRET_KEY');
+        $test = $this->findAll();
+        $jsonObject = JWT::encode($test,$key,'HS256');
+        return $jsonObject;
     }
 
 //    /**
