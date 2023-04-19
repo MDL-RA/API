@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Licencie;
 
-use App\Entity\Licencie;
 use App\Repository\LicencieRepository;
 use App\Service\ConversionService;
 use Firebase\JWT\JWT;
@@ -11,7 +10,7 @@ use Symfony\Component\HttpKernel\Attribute\AsController;
 use Symfony\Component\Serializer\Exception\ExceptionInterface;
 
 #[AsController]
-class LicencieController extends AbstractController
+class LicencieById extends AbstractController
 {
     public function __construct(private LicencieRepository $licencieRepository, private ConversionService $convertionService){}
 
