@@ -3,12 +3,30 @@
 namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
+use App\Controller\Club\AllClub;
+use App\Controller\Club\ClubById;
 use App\Repository\ClubRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ClubRepository::class)]
 #[ORM\Table(name: "CLUB")]
-#[ApiResource]
+#[ApiResource(
+    operations: [
+        new Get(
+            uriTemplate: '/club/{id}',
+            controller: ClubById::class,
+            description: 'Récupére un club par son id',
+            name: 'club',
+        ),
+        new GetCollection(
+            controller:AllClub::class,
+            description: 'Récupére tous les clubs',
+            name:'allclubs'
+        )
+    ]
+)]
 class Club
 {
     #[ORM\Id]
