@@ -16,6 +16,7 @@ class QualiteById extends AbstractController
     public function __construct(private QualiteRepository $qualiteRepository, private readonly ConversionService $convertionService){}
 
     /**
+     * Méthode pour envoyer une qualitée chiffrée par l'URL au travers d'un JSON
      * @return array
      *@throws ExceptionInterface
      */

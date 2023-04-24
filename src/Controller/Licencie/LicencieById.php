@@ -15,6 +15,7 @@ class LicencieById extends AbstractController
     public function __construct(private LicencieRepository $licencieRepository, private ConversionService $convertionService){}
 
     /**
+      * Méthode pour envoyer un licencié chiffré par l'URL au travers d'un JSON
      * @return array
      *@throws ExceptionInterface
      */

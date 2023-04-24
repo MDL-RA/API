@@ -16,6 +16,7 @@ class ClubById extends AbstractController
     public function __construct(private ClubRepository $clubRepository, private readonly ConversionService $convertionService){}
 
     /**
+      * Méthode pour envoyer un club chiffré par l'URL au travers d'un JSON grâce à son id
      * @return array
      *@throws ExceptionInterface
      */

@@ -13,6 +13,7 @@ class ConversionService
     public function __construct(private ObjectNormalizer $serializer, private readonly ContainerInterface $container){}
 
     /**
+     * Méthode permettant de convertir un tableau d'objet en tableau associatif
      * @throws ExceptionInterface
      */
     public function ArrayConversion($entity): array|string
@@ -30,6 +31,11 @@ class ConversionService
     }
 
 
+    /**
+     * Méthode permettant de convertir un objet en une chaine de caractère
+     * @param $entity
+     * @return array|string
+     */
     public function SingleConversion($entity): array|string
     {
         $arr = [];
@@ -42,6 +48,11 @@ class ConversionService
     }
 
 
+    /**
+     * Méthode permettant de créer un tableau à partir des données passées en paramètre
+     * @param $data
+     * @return array
+     */
     public function toArray($data): array
     {
         $array = [
@@ -50,6 +61,11 @@ class ConversionService
         return $array;
     }
 
+    /**
+     * Méthode permettant de chiffrer les données passées en paramètre
+     * @param $data
+     * @return array
+     */
     public function Encrypt($data) : array
     {
         $path= 'file://'.$this->container->getParameter('kernel.project_dir').'/config/keys/public.pem';
