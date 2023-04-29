@@ -15,6 +15,7 @@ class AllLicencie extends AbstractController
     public function __construct(private LicencieRepository $licencieRepository, private ConversionService $convertionService){}
 
     /**
+     * Méthode pour envoyer tous les licenciés chiffrés par l'URL au travers d'un JSON
      * @return array
      *@throws ExceptionInterface
      */

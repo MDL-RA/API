@@ -16,6 +16,7 @@ class AllClub extends AbstractController
     public function __construct(private ClubRepository $clubRepository, private readonly ConversionService $convertionService){}
 
     /**
+     * Méthode pour envoyer tous les clubs chiffrés par l'URL au travers d'un JSON
      * @return array
      *@throws ExceptionInterface
      */

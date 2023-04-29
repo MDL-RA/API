@@ -16,6 +16,7 @@ class AllQualite extends AbstractController
     public function __construct(private QualiteRepository $qualiteRepository, private readonly ConversionService $convertionService){}
 
     /**
+     * Méthode pour envoyer toutes les qualités chiffrées par l'URL au travers d'un JSON
      * @return array
      *@throws ExceptionInterface
      */
